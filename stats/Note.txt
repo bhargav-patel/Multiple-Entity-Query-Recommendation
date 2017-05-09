@@ -1,0 +1,192 @@
+30M Dataset
+===========
+
+==entities
+
+45K users
+5.6M tracks
+50K playlists
+600K artists
+200K albums
+280K tags
+
+==relations
+31M user play  events
+2.7M  user  play  sessions
+4.1M  user  love preferences ( verage of 33 ratings per user )
+
+==idomaar format
+An entity and relation will have 5 attributes:
+
+    -a type (e.g., movie, book, person), stored as a string.
+    -an ID, stored as a string.
+	-a timestamp, stored as a long value based on the Unix epoch time. The timestamp defines when the entity has been created.
+	-a set of properties (e.g., the genre of an movie: comedy), stored as a JSON-formatted string
+    -a set of linked-entities (e.g., the actor of the movie: the person entity "Tom Cruise"), stored as a JSON-formatted string. The linked-entities typically consist of a list of entities defined by the entity type and the entity ID.
+
+
+ ==playlist.idomaar
+
+ 	number of playlists  = 57561 ( avg len = 27 )
+ 		proprly formatted = 57441 ( avg len = 30 )
+
+ ==
+ 	8185 invalid playlists
+
+ ==
+
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 40, 'is :', 3858)
+	('One hop neighbours ', 392204)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 50, 'is :', 2668)
+	('One hop neighbours ', 379754)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 60, 'is :', 1952)
+	('One hop neighbours ', 370360)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 200, 'is :', 126)
+	('One hop neighbours ', 242608)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 300, 'is :', 28)
+	('One hop neighbours ', 153422)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 400, 'is :', 7)
+	('One hop neighbours ', 88594)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 495, 'is :', 1)
+	('One hop neighbours ', 27302)
+	
+	for 40
+	artists 39509
+	albums 81703 
+
+==
+
+getting average length playlists: avgPlaylistLength.py
+
+getting sample steps:
+
+	step1 : extracting tracks with frequency in playlist with some threshold and take their one hop neighbours ( filterPopularTracksAndOneHopNbrs.py )
+		ip : tracks.idomaar , playlists.idomaar
+		op : filteredTracks.idomaar
+		
+		('top tracks with threshold', 40, 'is :', 3858)
+		('One hop neighbours ', 392204)
+		('# tracks written in filterd file : ', 483081)
+		
+	step2 : extracting playliststs related to filterd tracks ( filterRelatedPlaylist.py )
+		ip : filteredTracks.idomaar , playlists.idomaar
+		op : filteredPlaylists.idomaar
+
+		('#tracks in filteredTracksFile : ', 392204)
+		('#invalid lines in playlists file : ', 8185)
+		('#playlists written in filterd file : ', 46939)
+
+	step3 : extracting tags related to filterd tracks ( filterRelatedTags.py )
+		ip : filteredTracks.idomaar , tags.idomaar
+		op : filteredTags.idomaar
+
+		('#invalid lines in filteredTracksFile : ', 166891)
+		('#tags related to filteredTracksFile : ', 81939)
+		('#tags written in filterd file : ', 81939)
+
+	step4 : extracting artists related to filterd tracks ( filterRelatedArtist.py )
+		ip : filteredTracks.idomaar , persons.idomaar
+		op : filteredPersons.idomaar
+
+		('#invalid lines in filteredTracksFile : ', 166891)
+		('#artists related to filteredTracksFile : ', 39509)
+		('#artists written in filterd file : ', 58875)
+
+	step5 : extracting albums related to filterd tracks ( filterRelatedAlbum.py )
+		ip : filteredTracks.idomaar , albums.idomaar
+		op : filteredAlbums.idomaar
+
+		('#invalid lines in filteredTracksFile : ', 166891)
+		('#artists related to filteredTracksFile : ', 81703)
+		('#albums written in filterd file : ', 81703)
+
+
+summary ( Threshold 40 )
+=======
+
+file 		original 		filtered 		   %
+====		========		======== 		=======
+tracks 		5675143			483081 			08.51 %
+playlists 	57561			46939			81.55 %
+tags 		276618			81939			29.62 %
+persons 	595049			58875			09.89 %
+albums 		217337			81703			37.59 %
+
+=========== NEW SAMPLE WITH REMOVING TRACKS APPEARING IN ONLY ONE PLAYLIST ================
+getting sample steps:
+
+	step1 : extracting tracks with frequency in playlist with some threshold and take their one hop neighbours ( filterPopularTracksAndOneHopNbrs.py )
+		ip : tracks.idomaar , playlists.idomaar
+		op : filteredTracks.idomaar
+		
+		top tracks with threshold 2 is : 213898
+		One hop neighbours  462594
+		Filtered One hop neighbours  213898
+		# tracks written in filterd file :  264757
+
+		
+	step2 : extracting playliststs related to filterd tracks ( filterRelatedPlaylist.py )
+		ip : filteredTracks.idomaar , playlists.idomaar
+		op : filteredPlaylists.idomaar
+
+		#tracks in filteredTracksFile :  213898
+		#invalid lines in playlists file :  8185
+		#playlists written in filterd file :  47303
+
+	step3 : extracting tags related to filterd tracks ( filterRelatedTags.py )
+		ip : filteredTracks.idomaar , tags.idomaar
+		op : filteredTags.idomaar
+
+		#invalid lines in filteredTracksFile :  81605
+		#tags related to filteredTracksFile :  52736
+		#tags written in filterd file :  52736
+
+
+	step4 : extracting artists related to filterd tracks ( filterRelatedArtist.py )
+		ip : filteredTracks.idomaar , persons.idomaar
+		op : filteredPersons.idomaar
+
+		#invalid lines in filteredTracksFile :  81605
+		#artists related to filteredTracksFile :  24122
+		#artists written in filterd file :  40096
+
+
+	step5 : extracting albums related to filterd tracks ( filterRelatedAlbum.py )
+		ip : filteredTracks.idomaar , albums.idomaar
+		op : filteredAlbums.idomaar
+
+		#invalid lines in filteredTracksFile :  81605
+		#artists related to filteredTracksFile :  52045
+		#albums written in filterd file :  52045
+
+
+
+summary ( Threshold 2 )
+=======
+
+file 		original 		filtered 		   %
+====		========		======== 		=======
+tracks 		5675143			264757 			04.67 %
+playlists 	57561			47303			82.18 %
+tags 		276618			52736			19.06 %
+persons 	595049			40096			06.74 %
+albums 		217337			52045			23.95 %
+
+		
+		
+
+		
+
+		
+
+
+
+
+ 	

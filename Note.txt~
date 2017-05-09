@@ -1,0 +1,83 @@
+30M Dataset
+===========
+
+==entities
+
+45K users
+5.6M tracks
+50K playlists
+600K artists
+200K albums
+280K tags
+
+==relations
+31M user play  events
+2.7M  user  play  sessions
+4.1M  user  love preferences ( verage of 33 ratings per user )
+
+==idomaar format
+An entity and relation will have 5 attributes:
+
+    -a type (e.g., movie, book, person), stored as a string.
+    -an ID, stored as a string.
+	-a timestamp, stored as a long value based on the Unix epoch time. The timestamp defines when the entity has been created.
+	-a set of properties (e.g., the genre of an movie: comedy), stored as a JSON-formatted string
+    -a set of linked-entities (e.g., the actor of the movie: the person entity "Tom Cruise"), stored as a JSON-formatted string. The linked-entities typically consist of a list of entities defined by the entity type and the entity ID.
+
+
+ ==playlist.idomaar
+
+ 	number of playlists  = 57561 ( avg len = 27 )
+ 		proprly formatted = 57441 ( avg len = 30 )
+
+ ==
+ 	8185 invalid playlists
+
+ ==
+
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 40, 'is :', 3858)
+	('One hop neighbours ', 392204)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 50, 'is :', 2668)
+	('One hop neighbours ', 379754)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 60, 'is :', 1952)
+	('One hop neighbours ', 370360)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 200, 'is :', 126)
+	('One hop neighbours ', 242608)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 300, 'is :', 28)
+	('One hop neighbours ', 153422)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 400, 'is :', 7)
+	('One hop neighbours ', 88594)
+	bash-4.1$ python shortlistPopularSongs.py 
+	('top tracks with threshold', 495, 'is :', 1)
+	('One hop neighbours ', 27302)
+	
+	for 40
+	artists 39509
+	albums 81703 
+
+==
+
+getting sample steps:
+
+step1 : extracting tracks with frequency in playlist with some threshold and take their one hop neighbours ( shortlistPopularSongs.py )
+	ip : tracks.idomaar , playlists.idomaar
+	op : filteredTracks.idomaar
+	
+	('top tracks with threshold', 40, 'is :', 3858)
+	('One hop neighbours ', 392204)
+	('# tracks written in filterd file : ', 483081)
+	
+step2 : extracting playliststs related to filterd tracks
+		ip : tracks.idomaar , playlists.idomaar
+	op : filteredTracks.idomaar
+
+
+
+
+ 	

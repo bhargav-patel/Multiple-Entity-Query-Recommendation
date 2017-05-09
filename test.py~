@@ -1,0 +1,12 @@
+import matplotlib.pyplot as plt
+
+x = [1,2,3,4,5]
+y = [1,2,3,6,5]
+
+z = [100000,500000,3,2,5]
+
+yp = plt.plot(y,label="y",log=True)
+zp = plt.plot(z,label="z",log=True)
+plt.legend([yp, zp], ['Up', 'Down'])
+
+plt.show()

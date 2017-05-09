@@ -1,0 +1,54 @@
+ENTITIES
+
+
+track example:
+==========================
+track	8	-1	{"duration":269000,"playcount":163,"MBID":"bba8bc34-850d-4b40-996a-13b769c190a0","name":"0010110000010011+(Cancer)/_/Naonian+Style"}	{"artists":[{"type":"person","id":7}],"albums":[{"type":"album","id":0}],"tags":[{"type":"tag","id":170251},{"type":"tag","id":257861},{"type":"tag","id":120463}]}
+
+
+playlist example
+============================
+playlist	0	1216545588	{"ID":2973549,"Title":"my_favorites","numtracks":27,"duration":6522}	{"subjects":[{"type":"user","id":41504}],"objects":[{"type":"track","id":3006631},{"type":"track","id":1885124},{"type":"track","id":2548942},{"type":"track","id":1350486},{"type":"track","id":3734368},{"type":"track","id":3559010},{"type":"track","id":1843196},{"type":"track","id":1480428},{"type":"track","id":3287322},{"type":"track","id":2289919},{"type":"track","id":2279338},{"type":"track","id":2279191},{"type":"track","id":341161},{"type":"track","id":2949622},{"type":"track","id":1210794},{"type":"track","id":3221713},{"type":"track","id":2288588},{"type":"track","id":2983307},{"type":"track","id":3579068},{"type":"track","id":228904},{"type":"track","id":3427000},{"type":"track","id":1854456},{"type":"track","id":2522599},{"type":"track","id":2805550},{"type":"track","id":2949054},{"type":"track","id":2866266},{"type":"track","id":3156469}]}
+
+
+tag example:
+============================
+tag	152244	-1	{"value":"m-dibango", "url":"www.last.fm/tag/m-dibango"}	{}
+tag	214084	-1	{"value":"self reflecting", "url":"www.last.fm/tag/self%20reflecting"}	{}
+
+
+person example:
+=============================
+person	187320	-1	{"MBID":"5886a9b8-54ff-4818-80c1-25b3b85ba5cf", "name":"Koota+Tanimura"}	{}
+person	97009	-1	{"MBID":null, "name":"%D0%9F%D0%B8%D0%B0%D0%BD%D0%B8%D0%BD%D0%BE"}	{}
+
+
+albums:
+=============================
+album	0	-1	{"MBID":"81a775f4-4a0e-401f-b167-f8dd97453193", "title":"Mutazione: Italian Electronic & New Wave Underground 1980-1988"}	{}
+
+
+users:
+=============================
+user	1	1116715959	{"lastfm_username":"000123","gender":"f","age":24,"country":"US","playcount":221012,"playlists":2,"subscribertype":"base"}
+
+
+
+RELATIONS
+
+events:
+=============================
+event.play	1	1405079768	{"playtime":176}	{"subjects":[{"type":"user","id":41504}], "objects":[{"type":"track","id":3351207}]}
+
+
+love:
+=============================
+preference	1	-1 {"value":"love"} {"subjects":[{"type":"user","id":44542}], "objects":[{"type":"track","id":2785601}]}
+
+
+sessions:
+=============================
+event.session	287143	1421668493	{"numtracks":10,"playtime":2216} {"subjects":[{"type":"user","id":42773}],"objects":[{"type":"track","id":150645,"playstart":0,"playtime":354,"playratio":1.85,"action":"play"},{"type":"track","id":150616,"playstart":354,"playtime":202,"playratio":0.97,"action":"play"},{"type":"track","id":657838,"playstart":556,"playtime":196,"playratio":0.99,"action":"play"},{"type":"track","id":3208711,"playstart":752,"playtime":300,"playratio":null,"action":"play"},{"type":"track","id":466151,"playstart":1052,"playtime":229,"playratio":1.00,"action":"play"},{"type":"track","id":1539775,"playstart":1281,"playtime":249,"playratio":1.00,"action":"play"},{"type":"track","id":150645,"playstart":1530,"playtime":278,"playratio":1.46,"action":"play"},{"type":"track","id":150645,"playstart":1808,"playtime":213,"playratio":1.12,"action":"play"},{"type":"track","id":657838,"playstart":2021,"playtime":196,"playratio":0.99,"action":"play"},{"type":"track","id":3287725,"playstart":2217,"playtime":-1,"playratio":null,"action":null}]}
+
+
+
